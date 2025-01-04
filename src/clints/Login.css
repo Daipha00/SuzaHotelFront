@@ -1,0 +1,29 @@
+/* Center the entire login form */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;  /* Full viewport height */
+    background-color: #f4f6f9;  /* Light background color */
+  }
+  
+  .login-box {
+    width: 350px; /* Width of the login form */
+  }
+  
+  /* Adjust the font style for social buttons */
+  .social-auth-links .btn {
+    font-weight: normal; /* Remove bold from the text */
+    font-size: 14px; /* Set a normal font size */
+    text-transform: none; /* Prevent uppercasing of the text */
+  }
+  
+  .social-auth-links .btn i {
+    margin-right: 8px; /* Add some space between the icon and text */
+  }
+  
+  .card {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow around the form */
+    border-radius: 8px; /* Rounded corners */
+  }
+  
