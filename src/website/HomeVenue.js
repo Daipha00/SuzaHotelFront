@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './HomeVenue.css';
 
 const combinedStyle = {
@@ -76,9 +77,12 @@ const combinedStyle = {
         textAlign: 'center',
         marginTop: '30px',
     },
+
     venueImage: {
         width: '100%',
+        height: '200px',
         borderRadius: '8px',
+        objectFit: 'cover',
     },
     popupOverlay: {
         position: 'fixed',
@@ -119,6 +123,8 @@ const HomeVenue = () => {
     const [venues, setVenues] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [selectedImage, setSelectedImage] = useState(null);
+    const navigate = useNavigate();
+    const [selectedVenue, setSelectedVenue] = useState(null);
 
     useEffect(() => {
         const fetchVenues = async () => {
@@ -157,12 +163,16 @@ const HomeVenue = () => {
         });
     };
 
-    const openPopup = (image) => {
-        setSelectedImage(image);
+    const handleClick = (id) => {
+        navigate(`/venue/${id}`);
+      };
+
+      const openPopup = (venue) => {
+        setSelectedVenue(venue); // Store the entire venue object
     };
 
     const closePopup = () => {
-        setSelectedImage(null);
+        setSelectedVenue(null);
     };
 
     return (
@@ -174,7 +184,7 @@ const HomeVenue = () => {
                         <ul style={combinedStyle.navList}>
                             <li style={combinedStyle.navItem}><a href="/" style={combinedStyle.navLink}>Home</a></li>
                             <li style={combinedStyle.navItem}><a href="/about" style={combinedStyle.navLink}>About Us</a></li>
-                            <li style={combinedStyle.navItem}><a href="/homeVenue" style={combinedStyle.navLink}>Venues</a></li>
+                            <li style={combinedStyle.navItem}><a href="/" style={combinedStyle.navLink}>Venues</a></li>
                             <li style={combinedStyle.navItem}><a href="/hoteli" style={combinedStyle.navLink}>Hotels</a></li>
                             <li style={combinedStyle.navItem}><a href="/contact" style={combinedStyle.navLink}>Contact</a></li>
                         </ul>
@@ -198,7 +208,7 @@ const HomeVenue = () => {
                                     src={`data:image/jpeg;base64,${venue.image}`}
                                     alt={venue.venueName}
                                     style={combinedStyle.venueImage}
-                                    onClick={() => openPopup(venue.image)}
+                                    onClick={() => openPopup(venue)}
                                 />
                                 <h2>{venue.venueName}</h2>
                                 <p><strong>Type:</strong> {venue.venueType}</p>
@@ -206,21 +216,35 @@ const HomeVenue = () => {
                                 <p><strong>Location:</strong> {venue.location}</p>
                                 <p><strong>Package:</strong> {venue.venuePackage}</p>
                                 <p><strong>Description:</strong> {venue.description}</p>
+                                <button
+                                    type="button"
+                                    className="btn btn-block btn-primary"
+                                    onClick={() => handleClick(venue.id)}
+                                >
+                                    More Details
+                                </button>
                             </div>
                         ))}
                     </div>
                 )}
             </div>
 
-            {selectedImage && (
+            {selectedVenue && (
                 <div style={combinedStyle.popupOverlay} onClick={closePopup}>
                     <div style={combinedStyle.popupContent} onClick={(e) => e.stopPropagation()}>
                         <img
-                            src={`data:image/jpeg;base64,${selectedImage}`}
-                            alt="Venue"
+                            src={`data:image/jpeg;base64,${selectedVenue.image}`}
+                            alt={selectedVenue.venueName}
                             style={combinedStyle.popupImage}
                         />
-                        <button style={combinedStyle.closeButton} onClick={closePopup}>&times;</button>
+                        <h2>{selectedVenue.venueName}</h2>
+                        <button
+                            type="button"
+                            className="btn btn-block btn-primary"
+                            onClick={() => handleClick(selectedVenue.id)}
+                        >
+                            More Details
+                        </button>
                     </div>
                 </div>
             )}

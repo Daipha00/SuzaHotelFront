@@ -38,7 +38,7 @@ export default function AddHotel() {
         position: "top-right",
         autoClose: 5000,
       });
-      navigate('/hotels'); // Adjust route as necessary
+      navigate('/contents/hotelTable'); // Adjust route as necessary
     })
     .catch(error => {
       console.error(error);
@@ -111,7 +111,7 @@ export default function AddHotel() {
           </div>
         </div>
 
-        <button type="submit" className="submit-button">Add Hotel</button>
+        <button type="submit" className="submit-button" style={{marginBottom: "100px"}}>Add Hotel</button>
       </form>
       <ToastContainer />
     </div>

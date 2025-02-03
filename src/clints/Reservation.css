@@ -1,0 +1,51 @@
+/* Assuming you have a sidenav with class 'sidenav' and your form container has class 'reservation-form' */
+.reservation-form {
+    padding: 20px;
+    margin-left: 250px; /* Adjust this value based on the width of your sidenav */
+    width: 75%; /* Or any desired width */
+    box-sizing: border-box;
+}
+
+.reservation-form h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.reservation-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.reservation-form label {
+    font-weight: bold;
+}
+
+.reservation-form input, 
+.reservation-form textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.reservation-form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.reservation-form button:hover {
+    background-color: #45a049;
+}
+
+@media (max-width: 768px) {
+    .reservation-form {
+        margin-left: 0;
+        width: 100%;
+    }
+}

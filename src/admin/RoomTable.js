@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+
 // Modal component to display images
 const ImageModal = ({ images, onClose }) => {
   return (

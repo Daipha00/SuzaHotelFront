@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Hoteli.css';
+import { useNavigate } from 'react-router-dom';
 
 const combinedStyle = {
     header: {
@@ -76,19 +77,23 @@ const combinedStyle = {
         textAlign: 'center',
         marginTop: '30px',
     },
-    hotelImage: {
-        width: '100%',
-        borderRadius: '8px',
-    },
+  
     starRating: {
         fontSize: '20px',
         color: '#f39c12',
+    },
+    hotelImage: {
+        width: '100%',
+        height: '200px', // Set a fixed height
+        borderRadius: '8px',
+        objectFit: 'cover', // Ensures images fill the space without distortion
     },
 };
 
 const Hoteli = () => {
     const [hotels, setHotels] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchHotels = async () => {
@@ -121,6 +126,11 @@ const Hoteli = () => {
         );
     };
 
+    const handleClick = (id) => {
+        navigate(`/hotel/${id}`);
+      };
+      
+
 
     return (
         <>
@@ -131,7 +141,7 @@ const Hoteli = () => {
                         <ul style={combinedStyle.navList}>
                             <li style={combinedStyle.navItem}><a href="/" style={combinedStyle.navLink}>Home</a></li>
                             <li style={combinedStyle.navItem}><a href="/about" style={combinedStyle.navLink}>About Us</a></li>
-                            <li style={combinedStyle.navItem}><a href="/homeVenue" style={combinedStyle.navLink}>Venues</a></li>
+                            <li style={combinedStyle.navItem}><a href="/" style={combinedStyle.navLink}>Venues</a></li>
                             <li style={combinedStyle.navItem}><a href="/hoteli" style={combinedStyle.navLink}>Hotels</a></li>
                             <li style={combinedStyle.navItem}><a href="/contact" style={combinedStyle.navLink}>Contact</a></li>
                         </ul>
@@ -158,8 +168,16 @@ const Hoteli = () => {
                                 />
                                 <h2>{hotel.hotelName}</h2>
                                 <p><strong>Location:</strong> {hotel.location}</p>
-                                <p><strong>Price:</strong> ${hotel.price}</p>
+                             
                                 <p> {renderStars(hotel.rating)}</p>
+                                <button 
+  type="button" 
+  className="btn btn-block btn-primary" 
+  onClick={() => handleClick(hotel.id)}
+>
+  More Details
+</button>
+
                             </div>
                         ))}
                     </div>

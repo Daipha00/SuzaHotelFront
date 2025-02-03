@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useHotel } from "./HotelContext";
 
 function HotelTable() {
+  const { setHotelId } = useHotel();
   const [hotels, setHotels] = useState([]);
   const navigate = useNavigate(); // Hook for navigation
 
@@ -20,10 +22,13 @@ function HotelTable() {
     fetchHotels();
   }, []);
 
-  // Navigate to the room table page with hotelId as state
   const handleRoomsClick = (hotelId) => {
-    navigate(`/rTable`, { state: { hotelId } });
+    setHotelId(hotelId); // Save hotelId in context
+    console.log(`Navigating to rooms for hotel with ID: ${hotelId}`);
+    navigate("/contents/rTable", { state: { hotelId } });
+
   };
+  
 
   // Handle image click (optional logic)
   const handleImageClick = (hotelId) => {

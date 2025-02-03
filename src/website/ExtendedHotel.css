@@ -1,0 +1,41 @@
+.extended-hotel-container {
+    padding: 20px;
+}
+
+.image-gallery,
+.room-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.image-container,
+.room-card {
+    position: relative;
+    width: 200px;
+}
+
+.hotel-image,
+.room-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.room-details {
+    margin-top: 10px;
+}
+
+.show-more-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.show-more-button:hover {
+    background-color: #0056b3;
+}

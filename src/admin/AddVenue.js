@@ -43,7 +43,7 @@ export default function AddVenue() {
         position: "top-right",
         autoClose: 5000,
       });
-      navigate('/venues'); // Navigate to the list of venues or wherever needed
+      navigate('/contents/venueTable'); // Navigate to the list of venues or wherever needed
     })
     .catch(error => {
       console.error(error);
@@ -78,20 +78,25 @@ export default function AddVenue() {
                 <label>Venue Type:</label>
                 <select className="form-control" value={venueType} onChange={(e) => setVenueType(e.target.value)} required>
                   <option value="">Venue Type</option>
-                  <option value="Hall">Hall</option>
-                  <option value="Main Hall">Main Hall</option>
-                  <option value="Conference">Conference</option>
+                  <option value="Conference Hall">Conference Hall</option>
+                  <option value="Meeting Room">Meeting Room</option>
+                  <option value="Exhibition Hall">Exhibition Hall</option>
+                  <option value="Exhibition Hall">Training Room</option>
+                  <option value="Wedding Hall">Wedding Hall</option>
+                  
                 </select>
               </div>
             </div>
 
             <div className="form-row">
             <div className="form-group">
-                <label>Campus:</label>
+                <label>Location:</label>
                 <select className="form-control" value={location} onChange={(e) => setLocation(e.target.value)} required>
-                  <option value="">Tunguu</option>
+                <option value="">Location</option>
+                  <option value="Tunguu">Tunguu</option>
                   <option value="Mbweni">Mbweni</option>
                   <option value="Maruhubi">Maruhubi</option>
+                  <option value="Kilimani">Kilimani</option>
                   <option value="Chwaka">Chwaka</option>
                   <option value="Pemba">Pemba</option>
                   <option value="Beit-el-ras">Beit-es-ras</option>
